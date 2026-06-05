@@ -1161,7 +1161,7 @@ function openM(id){
   const tc = TIPO_COLORS[r.tipo]  || '#374151';
   const provs = r.proveedores
     ? r.proveedores.split('|').map(p => `<div class="ptag">${p.trim()}</div>`).join('')
-    : '<div style="color:#9ca3af;font-size:12px">Sin proveedor asignado</div>';
+    : '<div style="color:#9ca3af;font-size:12px">Sin proveedor asignado</div>';\n\n  // Campos extra del Sheet\n  var extra = r.extra_fields || {};\n  var extraEntries = Object.keys(extra);\n  var extraHtml = extraEntries.length > 0\n    ? '<div style=\"margin-top:16px;border-top:1px solid #f3f4f6;padding-top:14px\">'\n      + '<div style=\"font-size:9px;color:#9ca3af;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px\">Información adicional</div>'\n      + '<div class=\"mgrid\">'\n      + extraEntries.map(function(k){ return '<div class=\"mf\"><div class=\"mfl\">' + k + '</div><div class=\"mfv\">' + (extra[k]||'') + '</div></div>'; }).join('')\n      + '</div></div>'\n    : '';
 
   document.getElementById('modal').innerHTML = `
     <div class="mh">
@@ -1204,6 +1204,8 @@ function openM(id){
       </div>
       ${provs}
     </div>
+
+    ${extraHtml}
   `;
   document.getElementById('ov').classList.add('show');
 }
